@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Eventos Comunitários</h1>
-    <a href="#" class="btn btn-success">Cadastrar Evento</a>
+    <a href="index.php?acao=cadastrar" class="btn btn-success">Cadastrar Evento</a>
 </div>
 <div class="card">
     <div class="card-header">
@@ -8,7 +8,7 @@
     </div>
 
     <div class="card-body">
-            <?php if (empty($eventos)): ?>
+        <?php if (empty($eventos)): ?>
             <div class="alert alert-warning">
                 Nenhum evento cadastrado no momento.
             </div>
@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <?php foreach ($eventos as $evento): ?>
+                        <?php foreach ($eventos as $evento): ?>
                             <tr>
                                 <td><?= htmlspecialchars($evento['titulo']) ?></td>
                                 <td><?= date('d/m/Y', strtotime($evento['data_evento'])) ?></td>
@@ -48,10 +48,9 @@
                     </tbody>
                 </table>
             </div>
-            <?php endif; ?>
+        <?php endif; ?>
     </div>
 </div>
-
 
 <div class="card">
     <div class="card-body">
