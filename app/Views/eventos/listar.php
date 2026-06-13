@@ -2,8 +2,54 @@
     <h1>Eventos Comunitários</h1>
     <a href="#" class="btn btn-success">Cadastrar Evento</a>
 </div>
-<div class="alert alert-info">
-    Estrutura MVC incial Criada com sucesso.
+<div class="card">
+    <div class="card-header">
+        <strong>Lista de Eventos Cadastrados</strong>
+    </div>
+
+    <div class="card-body">
+            <?php if (empty($eventos)): ?>
+            <div class="alert alert-warning">
+                Nenhum evento cadastrado no momento.
+            </div>
+        <?php else: ?>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Cidade</th>
+                            <th>Categoria</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <?php foreach ($eventos as $evento): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($evento['titulo']) ?></td>
+                                <td><?= date('d/m/Y', strtotime($evento['data_evento'])) ?></td>
+                                <td><?= substr($evento['horario'], 0, 5) ?></td>
+                                <td><?= htmlspecialchars($evento['cidade']) ?></td>
+                                <td><?= htmlspecialchars($evento['categoria']) ?></td>
+                                <td>
+                                    <span class="badge bg-primary">
+                                        <?= htmlspecialchars($evento['status_evento']) ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                                    <a href="#" class="btn btn-sm btn-danger">Excluir</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php endif; ?>
+    </div>
 </div>
 
 
