@@ -90,4 +90,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+const botoesExcluir = document.querySelectorAll('.btn-excluir');
+botoesExcluir.forEach(function(botao) {
+    botao.addEventListener('click', function(event) {
+        const confirmar = confirm('Tem certeza que deseja excluir este evento?');
+        if (!confirmar) {
+            event.preventDefault();
+        }
+    });
+});
 });

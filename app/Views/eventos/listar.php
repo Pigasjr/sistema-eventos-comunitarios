@@ -40,8 +40,11 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                                    <a href="#" class="btn btn-sm btn-danger">Excluir</a>
+                                    <a href="index.php?acao=editar&id=<?= $evento['id'] ?>"
+                                        class="btn btn-sm btn-warning">Editar</a>
+
+                                    <a href="index.php?acao=excluir&id=<?= $evento['id'] ?>"
+                                        class="btn btn-sm btn-danger btn-excluir">Excluir</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
