@@ -97,4 +97,37 @@ class EventoController
         header('Location: index.php');
         exit;
     }
+
+    public function visualizar()
+    {
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            header('Location: index.php');
+            exit;
+        }
+
+        $eventoModel = new Evento();
+        $evento = $eventoModel->buscarPorId($id);
+
+        if (!$evento) {
+            header('Location: index.php');
+            exit;
+        }
+
+        require_once __DIR__ . '/../Views/templates/header.php';
+        require_once __DIR__ . '/../Views/eventos/visualizar.php';
+        require_once __DIR__ . '/../Views/templates/footer.php';
+    }
+
+    public function calendario()
+    {
+        $eventoModel = new Evento();
+        $eventos = $eventoModel->listarTodos();
+
+        require_once __DIR__ . '/../Views/templates/header.php';
+        require_once __DIR__ . '/../Views/eventos/calendario.php';
+        require_once __DIR__ . '/../Views/templates/footer.php';
+    }
+
 }

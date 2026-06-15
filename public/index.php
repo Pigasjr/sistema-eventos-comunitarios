@@ -25,6 +25,14 @@ switch ($acao) {
         $controller->excluir();
         break;
 
+    case 'visualizar':
+        $controller->visualizar();
+        break;
+
+    case 'calendario':
+        $controller->calendario();
+        break;
+
     default:
         $controller->index();
         break;

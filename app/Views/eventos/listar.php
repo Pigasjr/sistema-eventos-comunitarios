@@ -1,8 +1,20 @@
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Eventos Comunitários</h1>
-    <a href="index.php?acao=cadastrar" class="btn btn-success">Cadastrar Evento</a>
+<div class="mb-4">
+    <h1 class="fw-bold">Eventos Comunitários</h1>
+    <p class="text-muted">
+        Consulte os eventos cadastrados, visualize os detalhes, edite informações ou remova registros.
+    </p>
 </div>
-<div class="card">
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="fw-bold mb-2">Bem-vindo ao sistema de eventos comunitários!</h5>
+        <p class="mb-0">
+            Aqui serão listados os eventos comunitários cadastrados no sistema.
+        </p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
     <div class="card-header">
         <strong>Lista de Eventos Cadastrados</strong>
     </div>
@@ -26,6 +38,7 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <?php foreach ($eventos as $evento): ?>
                             <tr>
@@ -35,16 +48,34 @@
                                 <td><?= htmlspecialchars($evento['cidade']) ?></td>
                                 <td><?= htmlspecialchars($evento['categoria']) ?></td>
                                 <td>
-                                    <span class="badge bg-primary">
-                                        <?= htmlspecialchars($evento['status_evento']) ?>
-                                    </span>
+                                    <?php
+                                    $status = mb_strtolower(trim($evento['status_evento'] ?? ''), 'UTF-8');
+
+                                    if ($status === 'ativo') {
+                                        echo '<span class="badge bg-success">Ativo</span>';
+                                    } elseif ($status === 'encerrado') {
+                                        echo '<span class="badge bg-secondary">Encerrado</span>';
+                                    } elseif ($status === 'cancelado') {
+                                        echo '<span class="badge bg-danger">Cancelado</span>';
+                                    } else {
+                                        echo '<span class="badge bg-dark">Status não informado</span>';
+                                    }
+                                    ?>
                                 </td>
                                 <td>
-                                    <a href="index.php?acao=editar&id=<?= $evento['id'] ?>"
-                                        class="btn btn-sm btn-warning">Editar</a>
+                                    <a href="index.php?acao=visualizar&id=<?= $evento['id'] ?>"
+                                        class="btn btn-sm btn-info text-white">
+                                        Ver
+                                    </a>
+
+                                    <a href="index.php?acao=editar&id=<?= $evento['id'] ?>" class="btn btn-sm btn-warning">
+                                        Editar
+                                    </a>
 
                                     <a href="index.php?acao=excluir&id=<?= $evento['id'] ?>"
-                                        class="btn btn-sm btn-danger btn-excluir">Excluir</a>
+                                        class="btn btn-sm btn-danger btn-excluir">
+                                        Excluir
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -52,12 +83,5 @@
                 </table>
             </div>
         <?php endif; ?>
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Bem vindo ao sistema de eventos comunitários!</h5>
-        <p class="card-text">Aqui serão listados os eventos comunitários cadastrados no sistema.</p>
     </div>
 </div>
